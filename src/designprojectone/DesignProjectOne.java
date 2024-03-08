@@ -52,15 +52,15 @@ public class DesignProjectOne {
     * PROGRAM Tech Fair Cost Calculator
     *   Read A as an integer
     *   IF A is greater than 15,
-    *       THEN price is 9.00 (int)
-    *       ELSE price is 15.00 (int)
+    *       THEN price is 9.00 (double)
+    *       ELSE price is 15.00 (double)
     *   ENDIF
     *   Multiply price by A
     * 
     *   Read B as an integer
     *   IF B is greater than 20
-    *       THEN price is 12 (int)
-    *       ELSE price is 15 (int)
+    *       THEN price is 12 (double)
+    *       ELSE price is 15 (double)
     *   ENDIF
     *   Multiply price by B
     * 
@@ -91,11 +91,11 @@ public class DesignProjectOne {
         //Reading and calculating variable cost for the Arduino project
         System.out.print("How many students ordered the Arduino project? ");
         int arduinoStudents = keyboard.nextInt();
-        int arduinoPriceRate = 10;
+        double arduinoPriceRate = 10;
         if (arduinoStudents>15){
             arduinoPriceRate = 9;
         }
-        int arduinoSum = arduinoStudents*arduinoPriceRate;
+        double arduinoSum = arduinoStudents*arduinoPriceRate;
         
         //Reading and calculating variable cost for the Raspberry PI progect
         System.out.print("How many students ordered the Raspberry PI project? ");
@@ -113,11 +113,20 @@ public class DesignProjectOne {
         int vrSum = vrStudents*vrPriceRate;
         
         //Adding the variable sum of all three projects
-        int variableSum = arduinoSum+raspberrySum+vrSum;
+        double variableSum = arduinoSum+raspberrySum+vrSum;
         
         //Determine total fixed price
         int studentTotal = arduinoStudents+raspberryStudents+vrStudents;
-        if(studentTotal>100);
-            
+        final double fixedRate = 50;
+        final double fixedDiscount = 0.05;
+        double fixedSum = studentTotal*fixedRate;
+        if(studentTotal>100){
+            fixedSum*=fixedDiscount;
+        }
+        
+        //Determine total price and average price per student
+        double totalSum = fixedSum+variableSum;
+        double averageCost = totalSum/studentTotal;
+        System.out.print("The average cost is $"+averageCost);
     }
 }
